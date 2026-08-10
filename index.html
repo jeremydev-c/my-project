@@ -3,23 +3,259 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeremys Climate Action Tool</title>
+    <title>SortRight — Waste Sorting Guide</title>
+    <meta name="description" content="A climate action tool that helps you sort waste correctly. Search any item to find out if it should be recycled, composted, or sent to landfill.">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   </head>
   <body>
+
     <header>
-      <h1>Project title: update this</h1>
-      <p class="problem-statement">The problem I am solving: update this on Day 3.</p>
+      <div class="header-content">
+        <h1>♻️ SortRight</h1>
+        <p class="tagline">Know where your waste belongs</p>
+      </div>
     </header>
+
     <main>
+
+      <!-- Problem Statement -->
+      <section id="problem">
+        <h2>The Problem</h2>
+        <div class="problem-card">
+          <p class="problem-statement">
+            <strong>Every year, 25% of recycling is contaminated</strong> because people don't know how to sort their waste correctly. A greasy pizza box in the recycling bin ruins an entire batch of paper. A battery in the landfill leaks toxic chemicals into the soil. Most people <em>want</em> to do the right thing — they just don't know how.
+          </p>
+          <p class="problem-statement">
+            SortRight solves this by giving you instant, clear answers. Type in any item and find out exactly where it should go — and why it matters.
+          </p>
+        </div>
+      </section>
+
+      <!-- Evidence / Why It Matters -->
       <section id="evidence">
-        <h2>Why this matters</h2>
-        <p>Your research finding goes here. You will add this on Day 2.</p>
+        <h2>Why This Matters</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-number">2.01B</span>
+            <span class="stat-label">tonnes of waste generated globally each year</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">25%</span>
+            <span class="stat-label">of recycling is contaminated by incorrect sorting</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">1.6B</span>
+            <span class="stat-label">tonnes of CO₂ could be reduced through better waste management</span>
+          </div>
+        </div>
       </section>
+
+      <!-- The Tool -->
       <section id="feature">
-        <h2>The tool</h2>
-        <p>Your feature goes here. You will build this on Day 4.</p>
+        <h2>The Tool</h2>
+        <p class="tool-intro">Type in any item to find out how to dispose of it properly.</p>
+
+        <div class="search-container">
+          <input type="text" id="search-input" placeholder="e.g. pizza box, plastic bottle, battery..." autocomplete="off">
+          <button id="search-btn">Sort It</button>
+        </div>
+
+        <div id="result" class="result hidden"></div>
+
+        <div class="examples">
+          <p>Try these: </p>
+          <div class="example-chips">
+            <button class="chip" data-item="plastic bottle">plastic bottle</button>
+            <button class="chip" data-item="pizza box">pizza box</button>
+            <button class="chip" data-item="banana peel">banana peel</button>
+            <button class="chip" data-item="battery">battery</button>
+            <button class="chip" data-item="glass jar">glass jar</button>
+            <button class="chip" data-item="styrofoam">styrofoam</button>
+          </div>
+        </div>
       </section>
+
     </main>
+
+    <footer>
+      <p>Built by Jeremy · Trabilizer Bootcamp 2026 · Climate Action Project</p>
+    </footer>
+
+    <script>
+      // Waste sorting database
+      const wasteData = {
+        "plastic bottle": {
+          bin: "recycle",
+          icon: "♻️",
+          label: "Recycle",
+          tip: "Rinse it out and remove the cap. Crush it to save space. Most curbside programs accept #1 and #2 plastics."
+        },
+        "pizza box": {
+          bin: "compost",
+          icon: "🟤",
+          label: "Compost",
+          tip: "Greasy pizza boxes contaminate paper recycling. Tear off clean parts to recycle, and compost the greasy sections."
+        },
+        "banana peel": {
+          bin: "compost",
+          icon: "🟤",
+          label: "Compost",
+          tip: "Banana peels break down quickly and add potassium to compost. Never put them in recycling."
+        },
+        "battery": {
+          bin: "special",
+          icon: "⚠️",
+          label: "Special Disposal",
+          tip: "Batteries contain toxic heavy metals. Take them to a designated drop-off point — never put them in regular bins."
+        },
+        "glass jar": {
+          bin: "recycle",
+          icon: "♻️",
+          label: "Recycle",
+          tip: "Rinse the jar and remove the lid. Glass can be recycled endlessly without losing quality."
+        },
+        "aluminium can": {
+          bin: "recycle",
+          icon: "♻️",
+          label: "Recycle",
+          tip: "Aluminium cans are one of the most recyclable items. Recycling one can saves enough energy to run a TV for 3 hours."
+        },
+        "aluminum can": {
+          bin: "recycle",
+          icon: "♻️",
+          label: "Recycle",
+          tip: "Aluminum cans are one of the most recyclable items. Recycling one can saves enough energy to run a TV for 3 hours."
+        },
+        "styrofoam": {
+          bin: "landfill",
+          icon: "🗑️",
+          label: "Landfill",
+          tip: "Styrofoam is not recyclable in most areas and takes 500+ years to decompose. Avoid using it when possible."
+        },
+        "coffee cup": {
+          bin: "landfill",
+          icon: "🗑️",
+          label: "Landfill",
+          tip: "Most disposable coffee cups have a plastic lining that makes them non-recyclable. Bring a reusable cup instead!"
+        },
+        "newspaper": {
+          bin: "recycle",
+          icon: "♻️",
+          label: "Recycle",
+          tip: "Newspapers are easily recyclable. Keep them dry and bundle them together."
+        },
+        "food scraps": {
+          bin: "compost",
+          icon: "🟤",
+          label: "Compost",
+          tip: "Food scraps make excellent compost. Keep meat and dairy out of home compost bins to avoid pests."
+        },
+        "plastic bag": {
+          bin: "special",
+          icon: "⚠️",
+          label: "Special Disposal",
+          tip: "Plastic bags jam recycling machinery. Return them to grocery store drop-off bins or reuse them."
+        },
+        "cardboard": {
+          bin: "recycle",
+          icon: "♻️",
+          label: "Recycle",
+          tip: "Flatten cardboard boxes to save space. Remove any tape or labels if possible. Keep it dry."
+        },
+        "light bulb": {
+          bin: "special",
+          icon: "⚠️",
+          label: "Special Disposal",
+          tip: "CFL bulbs contain mercury — take them to a hazardous waste drop-off. LED and incandescent bulbs go in the landfill."
+        },
+        "egg carton": {
+          bin: "compost",
+          icon: "🟤",
+          label: "Compost",
+          tip: "Paper egg cartons can be composted or recycled. Styrofoam egg cartons go in the landfill."
+        },
+        "paper towel": {
+          bin: "compost",
+          icon: "🟤",
+          label: "Compost",
+          tip: "Used paper towels can be composted if they only touched food. If they touched chemicals, put them in the landfill."
+        },
+        "tin can": {
+          bin: "recycle",
+          icon: "♻️",
+          label: "Recycle",
+          tip: "Rinse tin cans before recycling. You can leave the label on — it burns off during the recycling process."
+        },
+        "clothes": {
+          bin: "special",
+          icon: "⚠️",
+          label: "Donate or Special Disposal",
+          tip: "Donate wearable clothes. Worn-out textiles can go to textile recycling drop-offs — never in the regular recycling bin."
+        }
+      };
+
+      // DOM elements
+      const searchInput = document.getElementById("search-input");
+      const searchBtn = document.getElementById("search-btn");
+      const resultDiv = document.getElementById("result");
+
+      // Search function
+      function sortItem() {
+        const query = searchInput.value.trim().toLowerCase();
+        if (!query) {
+          showResult("🔍", "Type something", "Enter an item name to find out how to dispose of it.", "default");
+          return;
+        }
+
+        // Exact match
+        if (wasteData[query]) {
+          const item = wasteData[query];
+          showResult(item.icon, item.label, item.tip, item.bin);
+          return;
+        }
+
+        // Partial match
+        const keys = Object.keys(wasteData);
+        const match = keys.find(key => key.includes(query) || query.includes(key));
+        if (match) {
+          const item = wasteData[match];
+          showResult(item.icon, item.label + ` (matched: "${match}")`, item.tip, item.bin);
+          return;
+        }
+
+        // No match
+        showResult("❓", "Not found", `We don't have "${query}" in our database yet. When in doubt, check with your local waste management service.`, "unknown");
+      }
+
+      // Display result
+      function showResult(icon, label, tip, binType) {
+        resultDiv.className = "result " + binType;
+        resultDiv.innerHTML = `
+          <div class="result-icon">${icon}</div>
+          <div class="result-info">
+            <h3>${label}</h3>
+            <p>${tip}</p>
+          </div>
+        `;
+        resultDiv.classList.remove("hidden");
+      }
+
+      // Event listeners
+      searchBtn.addEventListener("click", sortItem);
+      searchInput.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") sortItem();
+      });
+
+      // Example chips
+      document.querySelectorAll(".chip").forEach(chip => {
+        chip.addEventListener("click", function() {
+          searchInput.value = this.dataset.item;
+          sortItem();
+        });
+      });
+    </script>
+
   </body>
 </html>
