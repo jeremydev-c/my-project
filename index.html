@@ -67,14 +67,14 @@
       <!-- The Tool -->
       <section id="feature">
         <h2>The Tool</h2>
-        <p class="tool-intro">Type in any item to find out how to dispose of it properly.</p>
+        <p class="tool-intro">Type in any item or waste sorting dilemma to find the best local disposal strategy.</p>
 
         <div class="search-container">
-          <input type="text" id="search-input" placeholder="e.g. pizza box, plastic bottle, battery..." autocomplete="off">
-          <button id="search-btn">Sort It</button>
+          <input type="text" id="feeling" placeholder="e.g. plastic bottle, pizza box, battery..." autocomplete="off">
+          <button id="findStrategy">Find a strategy</button>
         </div>
 
-        <div id="result" class="result hidden"></div>
+        <div id="strategyOutput" class="result"></div>
 
         <div class="examples">
           <p>Try these: </p>
@@ -209,9 +209,9 @@
       };
 
       // DOM elements
-      const searchInput = document.getElementById("search-input");
-      const searchBtn = document.getElementById("search-btn");
-      const resultDiv = document.getElementById("result");
+      const searchInput = document.getElementById("feeling");
+      const searchBtn = document.getElementById("findStrategy");
+      const resultDiv = document.getElementById("strategyOutput");
 
       // Search function
       function sortItem() {
@@ -254,19 +254,17 @@
         resultDiv.classList.remove("hidden");
       }
 
-      // Event listeners
-      searchBtn.addEventListener("click", sortItem);
-      searchInput.addEventListener("keypress", function(e) {
-        if (e.key === "Enter") sortItem();
-      });
-
-      // Example chips
-      document.querySelectorAll(".chip").forEach(chip => {
-        chip.addEventListener("click", function() {
-          searchInput.value = this.dataset.item;
-          sortItem();
-        });
-      });
+      // Event listeners (Will be wired up in Session 5: Build session)
+      // searchBtn.addEventListener("click", sortItem);
+      // searchInput.addEventListener("keypress", function(e) {
+      //   if (e.key === "Enter") sortItem();
+      // });
+      // document.querySelectorAll(".chip").forEach(chip => {
+      //   chip.addEventListener("click", function() {
+      //     searchInput.value = this.dataset.item;
+      //     sortItem();
+      //   });
+      // });
     </script>
 
   </body>
