@@ -200,6 +200,14 @@ function findLocalAction() {
   } else if (location.toLowerCase() === "karen") {
     // Set the Karen-specific local action message
     actionMessage = "Take e-waste and batteries to the Karen Shopping Centre collection point on the last Friday of each month.";
+  // Check if the user typed Mathare (ignoring upper/lower case) - Day 5 Extension
+  } else if (location.toLowerCase() === "mathare") {
+    // Set the Mathare-specific local action message
+    actionMessage = "Join the Mathare Youth Environmental Brigade every Sunday at 10 AM near Juja Road bridge for riverbank plastic collection.";
+  // Check if the user typed Githurai (ignoring upper/lower case) - Day 5 Extension
+  } else if (location.toLowerCase() === "githurai") {
+    // Set the Githurai-specific local action message
+    actionMessage = "Drop off plastic packaging and metal cans at the Githurai 45 Youth Recycling Hub near the railway station.";
   // Handle any other location the user might type
   } else {
     // Set a default action message for unknown neighbourhoods

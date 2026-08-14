@@ -28,3 +28,23 @@ The AI chose specific statistics for the page — like "2.01 billion tonnes of w
 
 ### End of day commitment
 Tomorrow I will verify the climate statistics are accurate and learn how the JavaScript search function works so I can explain it.
+
+---
+
+## Day 5
+
+### AI Interaction Log Entry: Day 5 Main Feature
+* **Day:** 5
+* **Prompt:** "Write a JavaScript event listener for the button with ID 'findAction' that reads the user's input from ID 'location', checks if they typed 'Kibera', 'Westlands', or 'Karen', and displays a neighborhood-specific waste action in the 'actionOutput' div."
+* **Decision:** Accepted
+* **Reason:** I accepted this suggestion because it cleanly connected my static HTML input and button elements to dynamic output text using standard DOM manipulation methods (`getElementById`, `.value`, `textContent`, `addEventListener`) and clear conditional `if / else if` statements without console errors.
+
+### AI Interaction Log Entry: Day 5 Stretch Goal Extension
+* **Day:** 5 (Stretch Goal)
+* **Prompt:** "Add a second condition to your if statement. Handle one more input value and display a different response for it."
+* **Decision:** Accepted
+* **Reason:** I accepted this suggestion because adding `else if` conditions for 'Mathare' and 'Githurai' handled additional Nairobi neighbourhood inputs and displayed tailored community waste action responses as required by the extension criteria.
+
+### End-of-Day Commitment
+Today I added interactive JavaScript button click events and location-based waste sorting guidance to my prototype. Tomorrow I will refine the interactive UI feedback, expand item search coverage, and polish user experience across mobile screen sizes.
+
